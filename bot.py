@@ -26,8 +26,7 @@ def convert(message):
     id = message.chat.id
     bot.delete_message(id, message.message_id)
     markup = types.InlineKeyboardMarkup()
-    markup.add(types.InlineKeyboardButton(text="Pdf", callback_data="pdf"))
-    markup.add(types.InlineKeyboardButton(text="🗑", callback_data="del"))
+    markup.add(types.InlineKeyboardButton(text="Pdf", callback_data="pdf"),types.InlineKeyboardButton(text="🗑", callback_data="del"))
     pdf = bot.send_message(id, "Images: " + str(functions.get_images_count(id)), reply_markup=markup)
 
 @bot.callback_query_handler(func=lambda call:True)
