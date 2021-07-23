@@ -57,5 +57,5 @@ def get_images_count(id):
 def creating_pdf(directory, name=None):
     images_list = get_images(str(directory))
     if images_list:
-        with open(f"files/{name}.pdf", "wb") as f:
+        with open(f"{name}.pdf", "wb") as f:
             f.write(img2pdf.convert(images_list))

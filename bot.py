@@ -38,10 +38,11 @@ def call_(call):
             functions.creating_pdf(directory=id, name=f"@{bot.get_me().username} {id}")
         except:
             print("Not Create Pdf")
-        document = open(f"files/@{bot.get_me().username} {id}.pdf", "rb")
+        document = open(f"@{bot.get_me().username} {id}.pdf", "rb")
         bot.send_document(id, document)
         try:
             functions.delete_folder(id)
+            functions.delete_file(f"@{bot.get_me().username} {id}.pdf")
         except:
             print(f"Not delete folder {id}")
 
