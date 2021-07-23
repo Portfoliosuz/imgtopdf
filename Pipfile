@@ -1,0 +1,13 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+img2pdf = "==0.4.1"
+pytelegrambotapi = "==3.7.6"
+
+[dev-packages]
+
+[requires]
+python_version = "3.9"
