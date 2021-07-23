@@ -39,7 +39,8 @@ def uploading_images(id, message, bot):
         print("Finded")
     else:
         create_folder(id)
-    raw = message.photo[0].file_id
+
+    raw = message.photo[len(message.photo)-1].file_id
     path = raw + ".jpg"
     file_info = bot.get_file(raw)
     downloaded_file = bot.download_file(file_info.file_path)

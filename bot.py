@@ -15,7 +15,10 @@ def start(message):
 @bot.message_handler(content_types=["photo"])
 def photo(message):
     id = message.chat.id
-    functions.uploading_images(id,message,bot)
+    try:
+        functions.uploading_images(id,message,bot)
+    except:
+        print("Not upload")
     bot.delete_message(id, message.message_id)
 @bot.message_handler(commands=["convert"])
 def convert(message):
@@ -31,9 +34,15 @@ def call_(call):
     if call.data == "pdf":
         id = call.message.chat.id
         bot.delete_message(id, pdf.message_id)
-        functions.creating_pdf(directory=id, name=f"@{bot.get_me().username} {id}")
+        try:
+            functions.creating_pdf(directory=id, name=f"@{bot.get_me().username} {id}")
+        except:
+            print("Not Create Pdf")
         document = open(f"files/@{bot.get_me().username} {id}.pdf", "rb")
         bot.send_document(id, document)
-        functions.delete_folder(id)
+        try:
+            functions.delete_folder(id)
+        except:
+            print(f"Not delete folder {id}")
 
 bot.polling()
