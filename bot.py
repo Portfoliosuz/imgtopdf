@@ -27,6 +27,7 @@ def convert(message):
     bot.delete_message(id, message.message_id)
     markup = types.InlineKeyboardMarkup()
     markup.add(types.InlineKeyboardButton(text="Pdf", callback_data="pdf"))
+    markup.add(types.InlineKeyboardButton(text="🗑", callback_data="del"))
     pdf = bot.send_message(id, "Images: " + str(functions.get_images_count(id)), reply_markup=markup)
 
 @bot.callback_query_handler(func=lambda call:True)
@@ -45,5 +46,11 @@ def call_(call):
             functions.delete_file(f"@{bot.get_me().username} {id}.pdf")
         except:
             print(f"Not delete folder {id}")
-
+    if call.data == "del":
+        id = call.message.chat.id
+        bot.delete_message(id, pdf.message_id)
+        try:
+            functions.delete_folder(id)
+        except:
+            print(f"Not delete folder {id}")
 bot.polling()
