@@ -1,0 +1,2 @@
+img2pdf==0.4.1
+pytelegrambotapi==3.7.6
